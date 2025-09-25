@@ -30,27 +30,12 @@ class OrderEventHandler {
 
       console.log(`📨 Processing event: ${event.type} for order: ${event.data?.orderId}`);
       
-      // Route to appropriate handler
-      switch (event.type) {
-        case 'ORDER_CREATED':
-          await this.handleOrderCreated(event);
-          break;
-        
-        case 'ORDER_STATUS_UPDATED':
-          await this.handleOrderStatusUpdated(event);
-          break;
-        
-        case 'ORDER_CANCELLED':
-          await this.handleOrderCancelled(event);
-          break;
-        
-        case 'HEALTH_CHECK':
-          await this.handleHealthCheck(event);
-          break;
-        
-        default:
-          console.log(`ℹ️  Unknown event type: ${event.type} - ignoring`);
-          return;
+      // Only handle ORDER_CREATED events
+      if (event.type === 'ORDER_CREATED') {
+        await this.handleOrderCreated(event);
+      } else {
+        console.log(`ℹ️  Ignoring event type: ${event.type} - only handling ORDER_CREATED`);
+        return;
       }
 
       // Mark event as processed

@@ -11,7 +11,6 @@ const OrderEventConsumer = require('./src/consumers/OrderEventConsumer');
 const OrderEventHandler = require('./src/handlers/OrderEventHandler');
 const NotificationService = require('./src/services/NotificationService');
 const EmailService = require('./src/services/EmailService');
-const SMSService = require('./src/services/SMSService');
 
 class NotificationServiceApp {
   constructor() {
@@ -30,8 +29,7 @@ class NotificationServiceApp {
 
     // Initialize services (Dependency Injection)
     this.emailService = new EmailService();
-    this.smsService = new SMSService();
-    this.notificationService = new NotificationService(this.emailService, this.smsService);
+    this.notificationService = new NotificationService(this.emailService);
     
     // Initialize event handler
     this.orderEventHandler = new OrderEventHandler(this.notificationService);
