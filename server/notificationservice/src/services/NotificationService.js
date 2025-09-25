@@ -35,35 +35,7 @@ class NotificationService {
         error: error.message
       });
     }
-    this.storeNotificationHistory(orderData.orderId, 'ORDER_CONFIRMATION', results);
     return results;
-  }
-
-  /**
-   * Store notification history (in-memory for demo)
-   * @param {String} orderId - Order ID
-   * @param {String} type - Notification type
-   * @param {Object} result - Notification result
-   */
-  storeNotificationHistory(orderId, type, result) {
-    if (!this.notificationHistory.has(orderId)) {
-      this.notificationHistory.set(orderId, []);
-    }
-    
-    this.notificationHistory.get(orderId).push({
-      type,
-      result,
-      timestamp: new Date().toISOString()
-    });
-  }
-
-  /**
-   * Get notification history for an order
-   * @param {String} orderId - Order ID
-   * @returns {Array} Notification history
-   */
-  getNotificationHistory(orderId) {
-    return this.notificationHistory.get(orderId) || [];
   }
 
   /**

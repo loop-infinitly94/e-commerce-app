@@ -156,35 +156,6 @@ class OrderEventConsumer {
     }
   }
 
-  /**
-   * Process batch of messages (alternative to eachMessage)
-   * @param {Object} batch - Batch of messages
-   * @param {Function} resolveOffset - Offset resolution function
-   * @param {Function} heartbeat - Heartbeat function
-   */
-  async processBatch(batch, resolveOffset, heartbeat) {
-    console.log(`📦 Processing batch of ${batch.messages.length} messages from ${batch.topic}`);
-    
-    for (const message of batch.messages) {
-      try {
-        await this.processMessage(batch.topic, batch.partition, message, heartbeat);
-        
-        // Resolve offset after successful processing
-        resolveOffset(message.offset);
-        
-      } catch (error) {
-        console.error(`❌ Failed to process message in batch:`, {
-          topic: batch.topic,
-          partition: batch.partition,
-          offset: message.offset,
-          error: error.message
-        });
-        
-        // Stop processing batch on error
-        break;
-      }
-    }
-  }
 
   /**
    * Stop the consumer gracefully
