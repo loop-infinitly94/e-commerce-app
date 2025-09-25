@@ -40,11 +40,19 @@ class OrderServiceApp {
       const orderService = new OrderService(orderRepository, eventPublisher);
       const orderController = new OrderController(orderService);
       
+      // Create dependencies container
+      const dependencies = {
+        orderController,
+        orderService,
+        orderRepository,
+        eventPublisher
+      };
+      
       // Setup Express middleware
       this.setupMiddleware();
       
-      // Setup routes
-      this.setupRoutes(orderController);
+      // Setup routes with dependencies container
+      this.setupRoutes(dependencies);
       
       // Setup error handling
       this.setupErrorHandling();
@@ -92,9 +100,9 @@ class OrderServiceApp {
     });
   }
 
-  setupRoutes(orderController) {
-    // API routes
-    this.app.use('/api/orders', createOrderRoutes(orderController));
+  setupRoutes(dependencies) {
+    // API routes with dependency injection
+    this.app.use('/api/orders', createOrderRoutes(dependencies));
     
     // Root endpoint
     this.app.get('/', (req, res) => {
