@@ -1,0 +1,37 @@
+server/notificationservice/node_modules
+server/notificationservice/.env
+server/notificationservice/.env.local
+
+server/orderservice/node_modules
+server/orderservice/.env
+server/orderservice/.env.local
+
+client/e-commerce/node_modules
+client/e-commerce/.env
+client/e-commerce/.env.local
+client/e-commerce/dist
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
