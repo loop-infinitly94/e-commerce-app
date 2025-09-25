@@ -396,23 +396,3 @@ docker-compose -f docker-compose.prod.yml up -d
    rm -rf node_modules package-lock.json
    npm install
    ```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- React team for the amazing frontend library
-- Express.js community for the robust backend framework
-- Apache Kafka for reliable event streaming
-- MongoDB for flexible document storage
-- All open-source contributors who made this project possible
